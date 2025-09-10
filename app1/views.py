@@ -4,7 +4,7 @@ from django.views import View
 
 from app1.forms import SignUpForm,LoginForm,SchoolForm,StudentForm
 
-from app1.models import School
+from app1.models import School,Student
 
 
 
@@ -79,7 +79,18 @@ class AddSchool(View):
 class SchoolDetails(View):
     def get(self,request,i):
         s=School.objects.get(id=i)
-        return render(request,'schooldetails.html',{'school':s})
+        can_join=True   #assuming current user not joined in any school initially
+        is_student=False #assuming current user is not joined particular school
+        u=request.user
+        try:
+            st=Student.objects.get(user=u)#checks whether the current user joined in any school
+            can_join=False
+            if st.school==s:    #if the user joined in the that specific school
+                is_student=True
+        except:
+            pass
+
+        return render(request,'schooldetails.html',{'school':s,'can_join':can_join,'is_student':is_student})
 
 class StudentJoin(View):
     def get(self,request,i):

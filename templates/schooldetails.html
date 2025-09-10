@@ -23,8 +23,13 @@
         {% if user.is_authenticated %}
         {% if user.is_superuser != True %}
         <tr>
-            <th colspan="2" class="text-center"><a href="{% url 'studentjoin' school.id %}" class="btn btn-primary">Join</a>
-</th>
+            {% if can_join %}
+            <th colspan="2" class="text-center"><a href="{% url 'studentjoin' school.id %}" class="btn btn-primary">Join</a></th>
+            {% endif %}
+
+            {% if is_student %}
+            <th colspan="2" class="text-center"><a href="{% url 'studentjoin' school.id %}" class="btn btn-primary">Leave</a></th>
+            {% endif %}
         </tr>
         {% endif %}
         {% endif %}

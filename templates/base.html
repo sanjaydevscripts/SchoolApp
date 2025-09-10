@@ -35,9 +35,16 @@
            <li class="nav-item">
             <a class="nav-link" href="{% url 'schoollist' %}">schoollist</a>
            </li>
-           <li class="nav-item">
+
+           {% if user.is_superuser == True %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'addschool' %}">AddSchool</a>
+           </li>
+            {% endif %}
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'userlogout' %}">Logout</a>
            </li>
+
           {% else %}
             <li class="nav-item">
              <a class="nav-link" href="{% url 'register' %}">Register</a>

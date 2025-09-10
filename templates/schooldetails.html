@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>School Details</title>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-3 d-flex align-items-center justify-content-center">
+  <div>
+    <h1>School Details</h1>
+    <table class="table table-bordered">
+        <tr>
+            <th>Name</th>
+            <td>{{ school.name }}</td>
+        </tr>
+        <tr>
+            <th>Principal</th>
+            <td>{{ school.principal }}</td>
+        </tr>
+        <tr>
+            <th>Location</th>
+            <td>{{ school.location }}</td>
+
+        {% if user.is_authenticated %}
+        {% if user.is_superuser != True %}
+        <tr>
+            <th colspan="2" class="text-center"><a href="{% url 'studentjoin' school.id %}" class="btn btn-primary">Join</a>
+</th>
+        </tr>
+        {% endif %}
+        {% endif %}
+    </table>
+  </div>
+</div>
+{% endblock %}

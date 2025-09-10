@@ -22,9 +22,14 @@ from app1 import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.Home.as_view(),name="home"),
+    path('adminhome',views.AdminHome.as_view(),name="adminhome"),
+    path('studenthome',views.StudentHome.as_view(),name="studenthome"),
     path('register/',views.UserRegistration.as_view(),name="register"),
     path('login/',views.UserLogin.as_view(),name="userlogin"),
     path('logout/',views.UserLogout.as_view(),name="userlogout"),
-    path('schoollist/',views.SchoolList.as_view(),name="schoollist"),
+    path('schoollist/', views.SchoolList.as_view(), name="schoollist"),
+    path('addschool/',views.AddSchool.as_view(),name="addschool"),
+    path('schooldetails/<int:i>',views.SchoolDetails.as_view(),name="schooldetails"),
+    path('studentjoin/<int:i>',views.StudentJoin.as_view(),name="studentjoin"),
 
 ]

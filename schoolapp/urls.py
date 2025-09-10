@@ -31,5 +31,6 @@ urlpatterns = [
     path('addschool/',views.AddSchool.as_view(),name="addschool"),
     path('schooldetails/<int:i>',views.SchoolDetails.as_view(),name="schooldetails"),
     path('studentjoin/<int:i>',views.StudentJoin.as_view(),name="studentjoin"),
+    path('leave/<int:i>', views.SchoolLeave.as_view(), name="leave"),
 
 ]

@@ -28,12 +28,23 @@
             {% endif %}
 
             {% if is_student %}
-            <th colspan="2" class="text-center"><a href="{% url 'studentjoin' school.id %}" class="btn btn-primary">Leave</a></th>
+            <th colspan="2" class="text-center"><a href="{% url 'leave' school.id %}" class="btn btn-danger">Leave</a></th>
             {% endif %}
         </tr>
         {% endif %}
         {% endif %}
     </table>
+      {% if user.is_authenticated %}
+      {%if user.is_superuser == True %}
+       <h1>List of Students</h1>
+         <ol>
+        {% for j in school.students.all %}
+            <li>{{ j.name }} ({{ j.age }}, {{ j.place }})</li>
+        {% endfor %}
+        </ol>
+      {% endif %}
+        {% endif %}
+
   </div>
 </div>
 {% endblock %}

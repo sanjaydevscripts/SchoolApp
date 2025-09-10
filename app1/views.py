@@ -106,6 +106,19 @@ class StudentJoin(View):
             student.school=s
             student.save()
             return render(request,'studenthome.html')
+
+class SchoolLeave(View):
+    def get(self,request,i):
+        s=School.objects.get(id=i)
+        u=request.user
+        try:
+            st=Student.objects.get(school=s,user=u)
+            st.delete()
+        except:
+            pass
+        return render(request,'studenthome.html')
+
+
 class UserLogout(View):
     def get(self,request):
         logout(request)
